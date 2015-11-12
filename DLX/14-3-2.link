@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DLXObject>
+<Data>
+	<DataTable Base='805306368' Length='0'>
+	</DataTable>
+	<DataContent></DataContent>
+</Data>
+<Text>
+
+	<TextTable Base='1073741824' Length='120'>
+		<Symbol name='MAIN' isGlobal='True' isExtern='False' >0</Symbol>
+		<Symbol name='MINUS0' isGlobal='False' isExtern='False' >48</Symbol>
+		<Symbol name='MINUSA' isGlobal='False' isExtern='False' >56</Symbol>
+		<Symbol name='EXIT' isGlobal='False' isExtern='False' >64</Symbol>
+		<Symbol name='TEST' isGlobal='False' isExtern='False' >72</Symbol>
+		<Symbol name='CASE0' isGlobal='False' isExtern='False' >92</Symbol>
+		<Symbol name='FIN' isGlobal='False' isExtern='False' >112</Symbol>
+	</TextTable>
+	<TextContent>1 24 0 #0 1 8 0 #48 1 9 0 #65 1 10 0 #97 35 #9 32 TEST 0 24 24 4 35 #9 32 TEST 0 24 24 4 17 1 24 #10 29 1 MINUSA 0 4 24 8 31 EXIT 3 4 24 #10 0 4 4 9 35 #7 35 #0 18 2 10 4 29 2 CASE0 2 4 4 10 1 4 4 #10 33 31 18 2 9 4 29 2 FIN 2 4 4 9 1 4 4 #10 33 31 2 4 4 8 33 31 </TextContent>
+</Text>
+</DLXObject>

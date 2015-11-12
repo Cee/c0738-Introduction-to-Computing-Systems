@@ -1,0 +1,53 @@
+            .DATA
+BUFFER :    .ASCIIZ "x111"
+SAVER8 :    .SPACE  4
+SAVER9 :    .SPACE  4
+SAVER10 :   .SPACE  4
+            .TEXT   
+            .GLOBAL  MAIN
+MAIN :      ADDI    R20, R0, #0
+            ADDI    R5, R0, #16
+            ADDI    R4, R0, BUFFER
+            LB      R11, 0(R4)
+            SEQI    R12, R11, x78		
+            ADDI    R1, R0, #10
+            BNEZ    R12, SET_16
+            J       GOON
+SET_16 :    ADDI    R1, R0, #16
+            ADDI    R4, R4, #1
+            LB      R11, 0(R4)
+GOON :      JAL     JUDGE
+            BEQZ    R12, MULTIPLY_10
+MULTIPLY_16 :SLLI    R20, R20, #4
+            ADD     R20, R20, R11
+            J       MULTIPLY_FINISHED
+MULTIPLY_10 :SLLI    R14, R20, #1
+            SLLI    R15, R20, #3
+            ADD     R20, R14, R15
+            ADD     R20, R20, R11
+MULTIPLY_FINISHED :ADDI    R4, R4, #1
+            LB      R11, 0(R4)
+            SEQI    R16, R11, #0
+            BEQZ    R16, GOON
+            TRAP    x00
+
+JUDGE :     SW      SAVER8(R0), R8
+            SW      SAVER9(R0), R9
+            SW      SAVER10(R0), R10
+            ADDI    R8, R0, x30		
+            ADDI    R9, R0, x41		
+            ADDI    R10, R0, x61		
+            SLE     R2, R10, R11
+            BEQZ    R2, CASE_0
+            SUB     R11, R11, R10
+            J       END_JUDGE
+CASE_0 :    SLE     R2, R9, R11
+            BEQZ    R2, CASE_1
+            SUB     R11, R11, R9
+            J       END_JUDGE
+CASE_1 :    SUB     R11, R11, R8
+END_JUDGE : LW      R8, SAVER8(R0)
+            LW      R9, SAVER9(R0)
+            LW      R10, SAVER10(R0)
+            RET     
+

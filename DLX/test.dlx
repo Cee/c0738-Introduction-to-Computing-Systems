@@ -1,0 +1,29 @@
+		.data	x30000000
+		.text	x40000000
+		.global main
+main:	addi	r2,r2,#0
+		lhi		r3,x3000
+		lhi		r4,x3000
+		addi	r4,r4,x20
+		add 	r1,r1,r4
+
+
+LOOP:	lw		r5,0(r3)
+		lw		r6,0(r4)
+		seq		r16,r3,r1
+		bnez	r16,EXIT_2
+		addi	r3,r3,#1
+		addi	r4,r4,#1
+		seq		r16,r5,r6
+		bnez	r16,LOOP
+		slt		r16,r5,r6
+		beqz	r16,JUMP
+		addi	r2,r0,#-1
+		j		EXIT_1
+JUMP:	addi	r2,r0,#1
+		j 		EXIT_1
+
+EXIT_2:	addi	r2,r0,#0
+EXIT_1:	trap 	x00
+
+

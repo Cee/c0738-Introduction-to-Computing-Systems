@@ -1,0 +1,30 @@
+            .DATA	X30000000
+STR :       .ASCIIZ "aAbB"
+PLUSX04 :   .SPACE  1
+SAVER31 :   .SPACE  4
+SAVER3 :    .SPACE  4
+            .TEXT   X40000000
+            .GLOBAL  MAIN
+MAIN :      ADDI    R1, R0, PLUSX04
+            ADDI    R2, R0, x04
+            SB      0(R1), R2
+            ADDI    R3, R0, STR
+
+LOOP :      LB      R1, 0(R3)
+            SEQI    R2, R1, X04
+            BNEZ    R2, DONE
+            SLEI    R2, R1, x5A
+            BNEZ    R2, JUMP
+            JAL     TOUPPER
+JUMP :      ADD     R4, R0, R1
+            TRAP    x07
+            ADDI    R3, R3, #1
+            J       LOOP
+
+DONE :      TRAP    X00
+TOUPPER :   SW      SAVER31(R0), R31
+            SUBI    R1, R1, #32
+            SB      0(R3), R1
+            LW      R31, SAVER31(R0)
+            RET     
+

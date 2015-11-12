@@ -1,0 +1,16 @@
+            .DATA	x30000000
+S :         .ASCIIZ "abcdaaaff"
+            .TEXT   x40000000
+            .GLOBAL  MAIN
+MAIN :      ADDI    R1, R0, #0
+            ADDI    R2, R0, S
+            TRAP    x06
+LOOP :      LB      R3, 0(R2)
+            ADDI    R2, R2, #1
+            SEQI    R5, R3, x04
+            BNEZ    R5, EXIT
+            SEQ     R5, R4, R3
+            ADD     R1, R1, R5
+            J       LOOP
+EXIT :      ADD     R4, R0, R1
+            TRAP    x07

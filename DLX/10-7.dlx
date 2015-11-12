@@ -1,0 +1,14 @@
+            .DATA	x30000000
+            .TEXT   x40000000
+            .GLOBAL  MAIN
+MAIN :      ADDI    R8, R0, #2
+            ADDI    R9, R0, #7
+            ADDI    R11, R9, #0
+            ADDI    R10, R0, #0
+LOOP :      SLT     R1, R11, R8
+            BneZ    R1, EXIT
+            SUB     R11, R11, R8
+            ADDI    R10, R10, #1
+            J       LOOP
+EXIT :      TRAP    #0
+

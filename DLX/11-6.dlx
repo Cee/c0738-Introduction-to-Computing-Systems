@@ -1,0 +1,19 @@
+            .DATA	x30000000
+NUMBER :    .WORD   #1, #2, #3, #4,#3,#3,#-1
+            .TEXT   x40000000
+            .GLOBAL  MAIN
+MAIN :      ADDI    R1, R0, #0
+            ADDI    R2, R0, #0
+            ADDI    R3, R0, NUMBER
+AGAIN :     LW      R4, 0(R3)
+            ADDI    R3, R3, #4
+            ADDI    R5, R4, #1
+            BEQZ    R5, EXIT
+            ANDI    R5, R4, #1
+            BEQZ    R5, EVEN
+            ADDI    R1, R1, #1
+            J       JUMP
+EVEN :      ADDI    R2, R2, #1
+JUMP :      J       AGAIN
+EXIT :      ADDI    R2, R2, #0
+            TRAP    x00
